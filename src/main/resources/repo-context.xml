@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="redisRepo" class="com.robertsikora.core.repo.RedisRepo" abstract="true" >
+        <property name="redisTemplate" ref="redisTemplate" />
+        <property name="idGenerator" ref="defaultGenerator" />
+    </bean>
+
+    <bean id="userRepo" class="com.robertsikora.core.repo.UserRepo" parent="redisRepo" >
+        <property name="clazz" value="com.robertsikora.core.model.User" />
+    </bean>
+
+</beans>
