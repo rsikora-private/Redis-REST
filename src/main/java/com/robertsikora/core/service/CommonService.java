@@ -1,4 +1,4 @@
-package com.robertsikora.core.service.api.api;
+package com.robertsikora.core.service;
 
 import com.robertsikora.core.model.RedisEntity;
 

@@ -1,9 +1,10 @@
 package com.robertsikora.rest.controller;
 
-import com.robertsikora.core.service.api.api.CommonService;
 import com.robertsikora.core.model.RedisEntity;
+import com.robertsikora.core.service.CommonService;
 import com.robertsikora.rest.dto.Dto;
 import com.robertsikora.rest.mapper.Mapper;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.util.Assert;
 
 /**
@@ -14,7 +15,7 @@ public class BasicController<E extends RedisEntity, D extends Dto> {
     private Mapper<E, D>     mapper;
     private CommonService<E, Long> commonService;
 
-    public D findById(final long id){
+    public D findById(final Long id){
         return map(commonService.findById(id));
     }
 
@@ -31,10 +32,11 @@ public class BasicController<E extends RedisEntity, D extends Dto> {
         return mapper.fromEntity(entity);
     }
 
+    @Required
     public void setCommonService(final CommonService<E, Long> commonService) {
         this.commonService = commonService;
     }
-
+    @Required
     public void setMapper(final Mapper<E, D> mapper) {
         this.mapper = mapper;
     }

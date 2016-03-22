@@ -6,8 +6,6 @@ import com.robertsikora.rest.controller.BasicController;
 import com.robertsikora.rest.dto.UserDto;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;

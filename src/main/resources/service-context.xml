@@ -4,9 +4,9 @@
 
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="commonService" class="com.robertsikora.core.service.api.impl.CommonServiceImpl" abstract="true" />
+    <bean id="commonService" class="com.robertsikora.core.service.impl.CommonServiceImpl" abstract="true" />
 
-    <bean id="userService" class="com.robertsikora.core.service.api.impl.UserServiceImpl" parent="commonService" >
+    <bean id="userService" class="com.robertsikora.core.service.impl.UserServiceImpl" parent="commonService" >
         <property name="redisRepo" ref="userRepo" />
     </bean>
 

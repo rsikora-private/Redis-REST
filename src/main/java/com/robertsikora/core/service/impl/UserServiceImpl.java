@@ -1,15 +1,12 @@
 package com.robertsikora.core.service.impl;
 
-import com.robertsikora.core.service.api.UserService;
-import com.robertsikora.core.service.model.User;
-import org.springframework.stereotype.Service;
+import com.robertsikora.core.service.UserService;
+import com.robertsikora.core.model.User;
 
 /**
  * Created by robertsikora on 18.03.2016.
  */
 
-@Service(value = "userService")
-public class UserServiceImpl extends CommonServiceImpl<User> implements UserService {
-
+public class UserServiceImpl extends CommonServiceImpl<User, Long> implements UserService {
 
 }
