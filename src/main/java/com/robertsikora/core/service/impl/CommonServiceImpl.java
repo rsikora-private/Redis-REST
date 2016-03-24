@@ -1,22 +1,20 @@
 package com.robertsikora.core.service.impl;
 
 import com.robertsikora.core.model.RedisEntity;
-import com.robertsikora.core.repo.RedisRepo;
+import com.robertsikora.core.repo.impl.RedisRepo;
 import com.robertsikora.core.service.CommonService;
 import com.robertsikora.core.service.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.util.Assert;
-
-import java.io.Serializable;
 import java.util.Map;
 
 /**
  * Created by robertsikora on 18.03.2016.
  */
-public abstract class CommonServiceImpl<E extends RedisEntity, K extends Serializable>
-        implements CommonService<E, K> {
+public abstract class CommonServiceImpl<E extends RedisEntity>
+        implements CommonService<E> {
 
-    private RedisRepo<E, K> redisRepo;
+    private RedisRepo<E, Long> redisRepo;
 
     @Override
     public E create(final E entity) {
@@ -25,15 +23,13 @@ public abstract class CommonServiceImpl<E extends RedisEntity, K extends Seriali
     }
 
     @Override
-    public E findById(final K id) {
-        Assert.notNull(id);
-        return redisRepo.getById(id).orElseThrow(()
-                -> new NotFoundException(String.format("There is not entity for id:%s", id.toString())));
+    public E findById(final long id) {
+        return redisRepo.getById(Long.valueOf(id)).orElseThrow(()
+                -> new NotFoundException(String.format("There is not entity for id:%d", id)));
     }
 
     @Override
-    public void delete(K id) {
-        Assert.notNull(id);
+    public void delete(final long id) {
         redisRepo.delete(id);
     }
 
@@ -43,7 +39,7 @@ public abstract class CommonServiceImpl<E extends RedisEntity, K extends Seriali
     }
 
     @Required
-    public void setRedisRepo(final RedisRepo<E, K> redisRepo) {
+    public void setRedisRepo(final RedisRepo<E, Long> redisRepo) {
         this.redisRepo = redisRepo;
     }
 }

@@ -15,7 +15,7 @@ public abstract class BasicControllerImpl<E extends RedisEntity,
                                  D extends Dto> implements BasicController<D> {
 
     Mapper<E, D>                  mapper;
-    CommonService<E, Long>        commonService;
+    CommonService<E>              commonService;
 
     public long create(final D dto){
         Assert.notNull(dto);
@@ -42,7 +42,7 @@ public abstract class BasicControllerImpl<E extends RedisEntity,
     }
 
     @Required
-    public void setCommonService(final CommonService<E, Long> commonService) {
+    public void setCommonService(final CommonService<E> commonService) {
         this.commonService = commonService;
     }
 

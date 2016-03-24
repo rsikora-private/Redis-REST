@@ -1,6 +1,7 @@
-package com.robertsikora.core.repo;
+package com.robertsikora.core.repo.impl;
 
 import com.robertsikora.core.model.RedisEntity;
+import com.robertsikora.core.repo.Repo;
 import com.robertsikora.core.repo.id.IdGenerator;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.data.redis.core.RedisTemplate;
