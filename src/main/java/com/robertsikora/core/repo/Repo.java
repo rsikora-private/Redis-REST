@@ -1,5 +1,7 @@
 package com.robertsikora.core.repo;
 
+import com.robertsikora.core.model.RedisEntity;
+
 import java.io.Serializable;
 import java.util.Map;
 import java.util.Optional;
@@ -7,11 +9,11 @@ import java.util.Optional;
 /**
  * Created by robertsikora on 21.03.2016.
  */
-public interface Repo<T, K extends Serializable> {
+public interface Repo<E extends RedisEntity, K extends Serializable> {
 
-    T create(T entity);
+    E create(E entity);
 
-    Optional<T> getById(K id);
+    Optional<E> getById(K id);
 
     Map<Object,Object> findAll();
 
