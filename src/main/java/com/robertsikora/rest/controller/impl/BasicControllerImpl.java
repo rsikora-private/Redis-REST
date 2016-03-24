@@ -8,31 +8,27 @@ import com.robertsikora.rest.dto.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.util.Assert;
 
-import java.io.Serializable;
-
 /**
  * Created by robertsikora on 18.03.2016.
  */
 public abstract class BasicControllerImpl<E extends RedisEntity,
-                                 D extends Dto,
-                                 K extends Serializable>
-        implements BasicController<D, K> {
+                                 D extends Dto> implements BasicController<D> {
 
-    Mapper<E, D>            mapper;
-    CommonService<E, K>     commonService;
+    Mapper<E, D>                  mapper;
+    CommonService<E, Long>        commonService;
 
-    public K create(final D dto){
+    public long create(final D dto){
         Assert.notNull(dto);
         final E entity = commonService.create(map(dto));
         //noinspection unchecked
-        return (K) entity.getId();
+        return (Long) entity.getId();
     }
 
-    public D findById(final K id){
+    public D findById(final long id){
         return map(commonService.findById(id));
     }
 
-    public void delete(final K id){
+    public void delete(final long id){
         Assert.notNull(id);
         commonService.delete(id);
     }
@@ -46,7 +42,7 @@ public abstract class BasicControllerImpl<E extends RedisEntity,
     }
 
     @Required
-    public void setCommonService(final CommonService<E, K> commonService) {
+    public void setCommonService(final CommonService<E, Long> commonService) {
         this.commonService = commonService;
     }
 

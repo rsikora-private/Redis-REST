@@ -7,5 +7,5 @@ import com.robertsikora.rest.dto.PostDto;
 /**
  * Created by robertsikora on 18.03.2016.
  */
-public class PostControllerImpl extends BasicControllerImpl<Post, PostDto, Long> implements PostController {
+public class PostControllerImpl extends BasicControllerImpl<Post, PostDto> implements PostController {
 }

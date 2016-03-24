@@ -1,16 +1,15 @@
 package com.robertsikora.rest.controller;
 
 import com.robertsikora.rest.dto.Dto;
-import java.io.Serializable;
 
 /**
  * Created by robertsikora on 24.03.2016.
  */
-public interface BasicController <D extends Dto, K extends Serializable> {
+public interface BasicController <D extends Dto> {
 
-   K create(D dto);
+   long create(D dto);
 
-   D findById(K id);
+   D findById(long id);
 
-   void delete(K id);
+   void delete(long id);
 }

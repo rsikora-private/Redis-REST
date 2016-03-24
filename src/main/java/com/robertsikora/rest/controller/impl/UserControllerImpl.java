@@ -8,12 +8,12 @@ import com.robertsikora.rest.dto.UserDto;
 /**
  * Created by robertsikora on 24.03.2016.
  */
-public class UserControllerImpl extends BasicControllerImpl<User, UserDto, Long> implements UserController {
+public class UserControllerImpl extends BasicControllerImpl<User, UserDto> implements UserController {
 
     @Override
-    public Long addPost(final Long userId, final PostDto post) {
+    public long addPost(final long userId, final PostDto post) {
         final User user = commonService.findById(userId);
 
-        return null;
+        return 0;
     }
 }

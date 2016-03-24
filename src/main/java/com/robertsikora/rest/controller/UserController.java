@@ -6,7 +6,7 @@ import com.robertsikora.rest.dto.UserDto;
 /**
  * Created by robertsikora on 24.03.2016.
  */
-public interface UserController extends BasicController<UserDto, Long> {
+public interface UserController extends BasicController<UserDto> {
 
-    Long addPost(Long userId, PostDto post);
+    long addPost(long userId, PostDto post);
 }
