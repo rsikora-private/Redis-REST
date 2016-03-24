@@ -1,6 +1,6 @@
 package com.robertsikora.rest.endpoint;
 
-import com.robertsikora.rest.dto.UserDto;
+import com.robertsikora.rest.dto.PostDto;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public interface PostEndpoint {
 
     @RequestMapping(method = RequestMethod.GET, value = "{id}")
-    UserDto findById(Long id);
+    PostDto findById(Long id);
 
     @RequestMapping(method = RequestMethod.DELETE, value = "{id}")
     void delete(Long id);

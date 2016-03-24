@@ -19,7 +19,7 @@ import javax.annotation.Resource;
 public class UserEndpointImpl implements UserEndpoint {
 
     @Resource(name = "userController")
-    private BasicControllerImpl<User, UserDto> userController;
+    private BasicControllerImpl<User, UserDto, Long> userController;
 
     @Override
     public long create(@RequestBody final UserDto dto) {
