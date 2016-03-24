@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by robertsikora on 21.03.2016.
  */
-public interface IdGenerator<K extends Serializable> {
+public interface IdGenerator<ID extends Serializable> {
 
-    K generate(String key);
+    ID generate(String key);
 }

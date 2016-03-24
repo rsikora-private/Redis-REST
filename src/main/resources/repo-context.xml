@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="redisRepo" class="com.robertsikora.core.repo.RedisRepo" abstract="true" >
+    <bean id="redisRepo" class="com.robertsikora.core.repo.impl.RedisRepoImpl" abstract="true" >
         <property name="redisTemplate" ref="redisTemplate" />
         <property name="idGenerator" ref="defaultGenerator" />
     </bean>

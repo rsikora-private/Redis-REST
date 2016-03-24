@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by robertsikora on 19.03.2016.
  */
-public abstract class RedisEntity<K extends Serializable> {
+public abstract class RedisEntity<K extends Serializable> implements Serializable {
 
     private K id;
 

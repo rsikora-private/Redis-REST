@@ -7,6 +7,6 @@ import com.robertsikora.core.model.User;
  * Created by robertsikora on 18.03.2016.
  */
 
-public class UserServiceImpl extends CommonServiceImpl<User, Long> implements UserService {
+public class UserServiceImpl extends CommonServiceImpl<User> implements UserService {
 
 }
