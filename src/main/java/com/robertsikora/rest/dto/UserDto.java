@@ -1,11 +1,9 @@
 package com.robertsikora.rest.dto;
 
-import java.io.Serializable;
-
 /**
  * Created by robertsikora on 18.03.2016.
  */
-public class UserDto implements Dto, Serializable {
+public class UserDto implements Dto {
 
     private String login;
     private String password;
@@ -42,5 +40,16 @@ public class UserDto implements Dto, Serializable {
 
     public void setfName(String fName) {
         this.fName = fName;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("UserDto{");
+        sb.append("login='").append(login).append('\'');
+        sb.append(", password='").append(password).append('\'');
+        sb.append(", fName='").append(fName).append('\'');
+        sb.append(", lName='").append(lName).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

@@ -15,13 +15,18 @@ public class BasicController<E extends RedisEntity, D extends Dto> {
     private Mapper<E, D>     mapper;
     private CommonService<E, Long> commonService;
 
+    public Long create(final D entity){
+        Assert.notNull(entity);
+        return commonService.create(map(entity));
+    }
+
     public D findById(final Long id){
         return map(commonService.findById(id));
     }
 
-    public Long create(final D entity){
-        Assert.notNull(entity);
-        return commonService.create(map(entity));
+    public void delete(final Long id){
+        Assert.notNull(id);
+        commonService.delete(id);
     }
 
     public E map(final D dto){

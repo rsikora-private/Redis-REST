@@ -1,7 +1,6 @@
 package com.robertsikora.rest.api;
 
 import com.robertsikora.rest.dto.UserDto;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,6 +15,8 @@ public interface UserEndpoint {
     long create(UserDto dto);
 
     @RequestMapping(method = RequestMethod.GET, value = "{id}")
-    UserDto findById(@PathVariable(value = "id") Long id);
+    UserDto findById(Long id);
 
+    @RequestMapping(method = RequestMethod.DELETE, value = "{id}")
+    void delete(Long id);
 }
