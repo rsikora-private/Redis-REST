@@ -44,12 +44,11 @@ public class UserDto extends Dto {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("UserDto{");
-        sb.append("login='").append(login).append('\'');
-        sb.append(", password='").append(password).append('\'');
-        sb.append(", fName='").append(fName).append('\'');
-        sb.append(", lName='").append(lName).append('\'');
-        sb.append('}');
-        return sb.toString();
+        String sb = "UserDto{" + "login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", fName='" + fName + '\'' +
+                ", lName='" + lName + '\'' +
+                '}';
+        return sb;
     }
 }

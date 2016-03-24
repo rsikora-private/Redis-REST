@@ -6,7 +6,7 @@
 
     <bean id="basicController" class="com.robertsikora.rest.controller.impl.BasicControllerImpl" abstract="true" />
 
-    <bean id="userController" parent="basicController">
+    <bean id="userController" class="com.robertsikora.rest.controller.impl.UserControllerImpl" parent="basicController">
         <property name="mapper" ref="userMapper" />
         <property name="commonService" ref="userService"/>
     </bean>

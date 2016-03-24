@@ -5,7 +5,8 @@ package com.robertsikora.core.service.exception;
  */
 public class NotFoundException extends RedisServiceException {
 
-    public NotFoundException(){
+    public NotFoundException(final String message){
+        super(message);
     }
 
     public NotFoundException(final Throwable throwable) {

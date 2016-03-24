@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/posts")
 public interface PostEndpoint {
 
+    @RequestMapping(method = RequestMethod.POST)
+    Long create(PostDto post);
+
     @RequestMapping(method = RequestMethod.GET, value = "{id}")
     PostDto findById(Long id);
 

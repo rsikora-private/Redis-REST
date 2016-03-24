@@ -1,15 +1,14 @@
 package com.robertsikora.rest.endpoint.impl;
 
-import com.robertsikora.core.model.User;
+import com.robertsikora.rest.controller.UserController;
+import com.robertsikora.rest.dto.PostDto;
 import com.robertsikora.rest.endpoint.UserEndpoint;
-import com.robertsikora.rest.controller.impl.BasicControllerImpl;
 import com.robertsikora.rest.dto.UserDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.Resource;
 
 /**
  * Created by robertsikora on 18.03.2016.
@@ -18,13 +17,18 @@ import javax.annotation.Resource;
 @RestController
 public class UserEndpointImpl implements UserEndpoint {
 
-    @Resource(name = "userController")
-    private BasicControllerImpl<User, UserDto, Long> userController;
+    @Autowired
+    private UserController userController;
 
     @Override
-    public long create(@RequestBody final UserDto dto) {
+    public Long create(@RequestBody final UserDto dto) {
         Assert.notNull(dto);
         return userController.create(dto);
+    }
+
+    @Override
+    public Long addPost(@PathVariable(value = "userId") final Long userId, final PostDto post) {
+        return userController.addPost(userId, post);
     }
 
     @Override

@@ -13,17 +13,18 @@ import java.io.Serializable;
 /**
  * Created by robertsikora on 18.03.2016.
  */
-public class BasicControllerImpl<E extends RedisEntity,
+public abstract class BasicControllerImpl<E extends RedisEntity,
                                  D extends Dto,
                                  K extends Serializable>
         implements BasicController<D, K> {
 
-    private Mapper<E, D>            mapper;
-    private CommonService<E, K>     commonService;
+    Mapper<E, D>            mapper;
+    CommonService<E, K>     commonService;
 
     public K create(final D dto){
         Assert.notNull(dto);
         final E entity = commonService.create(map(dto));
+        //noinspection unchecked
         return (K) entity.getId();
     }
 

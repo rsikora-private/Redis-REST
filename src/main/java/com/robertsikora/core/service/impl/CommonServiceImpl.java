@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Required;
 import org.springframework.util.Assert;
 
 import java.io.Serializable;
+import java.util.Map;
 
 /**
  * Created by robertsikora on 18.03.2016.
@@ -27,13 +28,18 @@ public abstract class CommonServiceImpl<E extends RedisEntity, K extends Seriali
     public E findById(final K id) {
         Assert.notNull(id);
         return redisRepo.getById(id).orElseThrow(()
-                -> new NotFoundException());
+                -> new NotFoundException(String.format("There is not entity for id:%s", id.toString())));
     }
 
     @Override
     public void delete(K id) {
         Assert.notNull(id);
         redisRepo.delete(id);
+    }
+
+    @Override
+    public Map<Object,Object> findAll(){
+        return redisRepo.findAll();
     }
 
     @Required

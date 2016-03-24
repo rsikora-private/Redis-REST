@@ -5,7 +5,8 @@ package com.robertsikora.core.service.exception;
  */
 public class RedisServiceException extends RuntimeException {
 
-    public RedisServiceException(){
+    public RedisServiceException(final String message){
+        super(message);
     }
 
     public RedisServiceException(final Throwable throwable){
