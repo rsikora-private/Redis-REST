@@ -1,4 +1,4 @@
-package com.robertsikora.rest.mapper;
+package com.robertsikora.rest.dto.mapper;
 
 import org.springframework.util.Assert;
 

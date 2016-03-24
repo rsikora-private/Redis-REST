@@ -1,4 +1,4 @@
-package com.robertsikora.rest.mapper;
+package com.robertsikora.rest.dto.mapper;
 
 import com.robertsikora.core.model.User;
 import com.robertsikora.rest.dto.UserDto;

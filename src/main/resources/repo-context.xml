@@ -9,8 +9,12 @@
         <property name="idGenerator" ref="defaultGenerator" />
     </bean>
 
-    <bean id="userRepo" class="com.robertsikora.core.repo.UserRepo" parent="redisRepo" >
+    <bean id="userRepo" class="com.robertsikora.core.repo.impl.UserRepo" parent="redisRepo" >
         <property name="clazz" value="com.robertsikora.core.model.User" />
+    </bean>
+
+    <bean id="postRepo" class="com.robertsikora.core.repo.impl.PostRepo" parent="redisRepo" >
+        <property name="clazz" value="com.robertsikora.core.model.Post" />
     </bean>
 
 </beans>

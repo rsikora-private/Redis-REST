@@ -1,8 +1,8 @@
-package com.robertsikora.rest.impl;
+package com.robertsikora.rest.endpoint.impl;
 
 import com.robertsikora.core.model.User;
-import com.robertsikora.rest.api.UserEndpoint;
-import com.robertsikora.rest.controller.BasicController;
+import com.robertsikora.rest.endpoint.UserEndpoint;
+import com.robertsikora.rest.controller.impl.BasicControllerImpl;
 import com.robertsikora.rest.dto.UserDto;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +19,7 @@ import javax.annotation.Resource;
 public class UserEndpointImpl implements UserEndpoint {
 
     @Resource(name = "userController")
-    private BasicController<User, UserDto> userController;
+    private BasicControllerImpl<User, UserDto> userController;
 
     @Override
     public long create(@RequestBody final UserDto dto) {

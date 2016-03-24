@@ -4,11 +4,16 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="basicController" class="com.robertsikora.rest.controller.BasicController" abstract="true" />
+    <bean id="basicController" class="com.robertsikora.rest.controller.impl.BasicControllerImpl" abstract="true" />
 
     <bean id="userController" parent="basicController">
         <property name="mapper" ref="userMapper" />
         <property name="commonService" ref="userService"/>
+    </bean>
+
+    <bean id="postController" class="com.robertsikora.rest.controller.impl.PostControllerImpl" parent="basicController">
+        <property name="mapper" ref="postMapper" />
+        <property name="commonService" ref="postService"/>
     </bean>
 
 </beans>

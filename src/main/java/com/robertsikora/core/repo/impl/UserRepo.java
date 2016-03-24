@@ -1,6 +1,7 @@
-package com.robertsikora.core.repo;
+package com.robertsikora.core.repo.impl;
 
 import com.robertsikora.core.model.User;
+import com.robertsikora.core.repo.RedisRepo;
 import org.springframework.stereotype.Repository;
 
 /**
