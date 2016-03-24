@@ -3,6 +3,7 @@ package com.robertsikora.core.service.impl;
 import com.robertsikora.core.model.RedisEntity;
 import com.robertsikora.core.repo.RedisRepo;
 import com.robertsikora.core.service.CommonService;
+import com.robertsikora.core.service.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.util.Assert;
 
@@ -17,7 +18,7 @@ public abstract class CommonServiceImpl<E extends RedisEntity, K extends Seriali
     private RedisRepo<E, K> redisRepo;
 
     @Override
-    public K create(final E entity) {
+    public E create(final E entity) {
         Assert.notNull(entity);
         return redisRepo.create(entity);
     }
@@ -25,7 +26,8 @@ public abstract class CommonServiceImpl<E extends RedisEntity, K extends Seriali
     @Override
     public E findById(final K id) {
         Assert.notNull(id);
-        return redisRepo.getById(id);
+        return redisRepo.getById(id).orElseThrow(()
+                -> new NotFoundException());
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.robertsikora.rest.dto;
 /**
  * Created by robertsikora on 18.03.2016.
  */
-public class UserDto implements Dto {
+public class UserDto extends Dto {
 
     private String login;
     private String password;

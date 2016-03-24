@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 public interface CommonService<E extends RedisEntity, K extends Serializable> {
 
-    K create(E entity);
+    E create(E entity);
 
     E findById(K id);
 

@@ -23,7 +23,8 @@ public class BasicControllerImpl<E extends RedisEntity,
 
     public K create(final D dto){
         Assert.notNull(dto);
-        return commonService.create(map(dto));
+        final E entity = commonService.create(map(dto));
+        return (K) entity.getId();
     }
 
     public D findById(final K id){
@@ -47,6 +48,7 @@ public class BasicControllerImpl<E extends RedisEntity,
     public void setCommonService(final CommonService<E, K> commonService) {
         this.commonService = commonService;
     }
+
     @Required
     public void setMapper(final Mapper<E, D> mapper) {
         this.mapper = mapper;

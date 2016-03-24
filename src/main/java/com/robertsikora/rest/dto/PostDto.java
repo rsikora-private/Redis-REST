@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by robertsikora on 24.03.2016.
  */
-public class PostDto implements Dto {
+public class PostDto extends Dto {
 
     private String description;
     private Date enterDate;
