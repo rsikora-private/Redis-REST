@@ -3,6 +3,7 @@ package dto.mapper;
 import org.springframework.util.Assert;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -14,12 +15,12 @@ public interface Mapper<E, D> {
 
     E fromDTO(D d);
 
-    default Collection<E> fromDTOs(final Collection<D> dCollection){
+    default List<E> fromDTOs(final Collection<D> dCollection) {
         Assert.notEmpty(dCollection);
         return dCollection.stream().map(this::fromDTO).collect(Collectors.toList());
     }
 
-    default Collection<D> fromEntries(final Collection<E> eCollection){
+    default List<D> fromEntries(final Collection<E> eCollection) {
         Assert.notEmpty(eCollection);
         return eCollection.stream().map(this::fromEntity).collect(Collectors.toList());
     }

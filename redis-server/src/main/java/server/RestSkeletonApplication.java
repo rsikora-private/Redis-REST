@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ImportResource;
 @ImportResource("classpath:app-context.xml")
 public class RestSkeletonApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(RestSkeletonApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(RestSkeletonApplication.class, args);
+    }
 }

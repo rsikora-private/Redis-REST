@@ -6,6 +6,6 @@ import model.User;
  * Created by robertsikora on 21.03.2016.
  */
 
-class UserRepoImpl extends RedisRepoImpl<User, Long> {
+class UserRepoImpl extends ObjectRepoImpl<User, Long> {
 
 }

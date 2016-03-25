@@ -5,11 +5,11 @@ package service.exception;
  */
 public class RedisServiceException extends RuntimeException {
 
-    public RedisServiceException(final String message){
+    public RedisServiceException(final String message) {
         super(message);
     }
 
-    public RedisServiceException(final Throwable throwable){
+    public RedisServiceException(final Throwable throwable) {
         super(throwable);
     }
 }

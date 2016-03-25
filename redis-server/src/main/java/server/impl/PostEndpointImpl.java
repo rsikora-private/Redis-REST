@@ -2,12 +2,14 @@ package server.impl;
 
 import controller.PostController;
 import dto.PostDto;
-import server.PostEndpoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import server.PostEndpoint;
+
+import java.util.Map;
 
 /**
  * Created by robertsikora on 18.03.2016.
@@ -28,6 +30,11 @@ public class PostEndpointImpl implements PostEndpoint {
     @Override
     public PostDto findById(@PathVariable(value = "id") final Long id) {
         return postController.findById(id);
+    }
+
+    @Override
+    public Map<Object, Object> findAll() {
+        return postController.findAll();
     }
 
     @Override

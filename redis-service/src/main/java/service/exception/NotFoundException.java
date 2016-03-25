@@ -5,7 +5,7 @@ package service.exception;
  */
 public class NotFoundException extends RedisServiceException {
 
-    public NotFoundException(final String message){
+    public NotFoundException(final String message) {
         super(message);
     }
 

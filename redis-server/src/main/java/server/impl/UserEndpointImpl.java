@@ -2,13 +2,15 @@ package server.impl;
 
 import controller.UserController;
 import dto.PostDto;
-import server.UserEndpoint;
 import dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import server.UserEndpoint;
+
+import java.util.List;
 
 /**
  * Created by robertsikora on 18.03.2016.
@@ -27,11 +29,6 @@ public class UserEndpointImpl implements UserEndpoint {
     }
 
     @Override
-    public Long addPost(@PathVariable(value = "userId") final Long userId, final PostDto post) {
-        return userController.addPost(userId, post);
-    }
-
-    @Override
     public UserDto findById(@PathVariable(value = "id") final Long id) {
         return userController.findById(id);
     }
@@ -39,5 +36,15 @@ public class UserEndpointImpl implements UserEndpoint {
     @Override
     public void delete(@PathVariable(value = "id") final Long id) {
         userController.delete(id);
+    }
+
+    @Override
+    public void addPost(@PathVariable(value = "userId") final Long userId, @RequestBody final PostDto post) {
+        userController.addPost(userId, post);
+    }
+
+    @Override
+    public List<PostDto> findAllPosts(@PathVariable(value = "userId") final Long userId) {
+        return userController.findAllPosts(userId);
     }
 }

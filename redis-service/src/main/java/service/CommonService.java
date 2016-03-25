@@ -1,6 +1,7 @@
 package service;
 
 import model.RedisEntity;
+
 import java.util.Map;
 
 /**
@@ -12,6 +13,7 @@ public interface CommonService<E extends RedisEntity> {
 
     /**
      * Method return entity by id
+     *
      * @param id entity identifier
      * @return entity
      * @throws service.exception.NotFoundException
@@ -20,5 +22,5 @@ public interface CommonService<E extends RedisEntity> {
 
     void delete(long id);
 
-    Map<Object,Object> findAll();
+    Map<Object, Object> findAll();
 }

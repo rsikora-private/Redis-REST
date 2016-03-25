@@ -1,8 +1,8 @@
 package controller.impl;
 
-import model.Post;
 import controller.PostController;
 import dto.PostDto;
+import model.Post;
 
 /**
  * Created by robertsikora on 18.03.2016.

@@ -2,9 +2,10 @@ package repo.impl;
 
 import model.RedisEntity;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.Assert;
-import repo.RedisRepo;
+import repo.ObjectRepo;
 import repo.impl.id.IdGenerator;
 
 import java.io.Serializable;
@@ -14,14 +15,14 @@ import java.util.Optional;
 /**
  * Created by robertsikora on 21.03.2016.
  */
-abstract class RedisRepoImpl<T extends RedisEntity,
-        ID extends Serializable> implements RedisRepo<T, ID> {
+abstract class ObjectRepoImpl<T extends RedisEntity,
+        ID extends Serializable> implements ObjectRepo<T, ID> {
 
-    private Class<T>                         clazz;
-    private RedisTemplate<String, T>         redisTemplate;
-    private IdGenerator<ID>                  idGenerator;
+    private Class<T> clazz;
+    private RedisTemplate<String, T> redisTemplate;
+    private IdGenerator<ID> idGenerator;
 
-    public T create(final T entity){
+    public T create(final T entity) {
         Assert.notNull(entity);
         final ID id = idGenerator.generate(key());
         this.redisTemplate.opsForHash().put(key(), id, entity);
@@ -29,23 +30,32 @@ abstract class RedisRepoImpl<T extends RedisEntity,
         return entity;
     }
 
-    public Optional<T> getById(final ID id){
+    public Optional<T> getById(final ID id) {
         Assert.notNull(id);
-        return Optional.ofNullable((T)this.redisTemplate.opsForHash().get(key(), id));
+        T t = null;
+        try {
+            t = (T) this.redisTemplate.opsForHash().get(key(), id);
+            if (t != null) {
+                t.setId(id);
+            }
+        } catch (DataAccessException dae) {
+            System.out.print("");
+        }
+        return Optional.ofNullable(t);
     }
 
     @Override
-    public Map<Object,Object> findAll() {
+    public Map<Object, Object> findAll() {
         return this.redisTemplate.opsForHash().entries(key());
     }
 
     @Override
     public void delete(final ID id) {
         Assert.notNull(id);
-        this.redisTemplate.opsForHash().delete(key(),id);
+        this.redisTemplate.opsForHash().delete(key(), id);
     }
 
-    private String key(){
+    private String key() {
         return clazz.getSimpleName();
     }
 
