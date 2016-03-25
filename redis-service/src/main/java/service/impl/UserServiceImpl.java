@@ -19,8 +19,8 @@ import java.util.List;
 
 class UserServiceImpl extends CommonServiceImpl<User> implements UserService {
 
-    private PostService postService;
-    private UserPostsRelation userPostsRelation;
+    private PostService         postService;
+    private UserPostsRelation   userPostsRelation;
 
     @Override
     public void addPost(final long userId, final Post post) {
