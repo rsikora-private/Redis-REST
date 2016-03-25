@@ -1,11 +1,11 @@
 package repo.impl;
 
 import model.RedisEntity;
-import repo.RedisRepo;
-import repo.id.IdGenerator;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.Assert;
+import repo.RedisRepo;
+import repo.impl.id.IdGenerator;
 
 import java.io.Serializable;
 import java.util.Map;

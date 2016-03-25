@@ -1,4 +1,4 @@
-package repo.id;
+package repo.impl.id;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;

@@ -1,9 +1,9 @@
 package controller.impl;
 
-import model.RedisEntity;
 import controller.BasicController;
 import dto.Dto;
 import dto.mapper.Mapper;
+import model.RedisEntity;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.util.Assert;
 import service.CommonService;
@@ -14,13 +14,12 @@ import service.CommonService;
 abstract class BasicControllerImpl<E extends RedisEntity,
                                  D extends Dto> implements BasicController<D> {
 
-    Mapper<E, D>                  mapper;
-    CommonService<E> commonService;
+    Mapper<E, D>                    mapper;
+    CommonService<E>                commonService;
 
     public long create(final D dto){
         Assert.notNull(dto);
         final E entity = commonService.create(map(dto));
-        //noinspection unchecked
         return (Long) entity.getId();
     }
 

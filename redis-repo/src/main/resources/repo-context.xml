@@ -6,7 +6,7 @@
 
     <import resource="redis-ds.xml"/>
 
-    <bean id="defaultGenerator" class="repo.id.DefaultGenerator" />
+    <bean id="defaultGenerator" class="repo.impl.id.DefaultGenerator" />
 
     <bean id="redisRepo" class="repo.RedisRepo" abstract="true" >
         <property name="redisTemplate" ref="redisTemplate" />
