@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface UserController extends BasicController<UserDto> {
 
-    void addPost(long userId, PostDto post);
+    PostDto addPost(long userId, PostDto post);
 
     List<PostDto> findAllPosts(long userId);
 }

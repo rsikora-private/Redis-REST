@@ -18,8 +18,8 @@ class UserControllerImpl extends BasicControllerImpl<User, UserDto> implements U
     private PostMapper postMapper;
 
     @Override
-    public void addPost(final long userId, final PostDto post) {
-        getService().addPost(userId, postMapper.fromDTO(post));
+    public PostDto addPost(final long userId, final PostDto post) {
+        return postMapper.fromEntity(getService().addPost(userId, postMapper.fromDTO(post)));
     }
 
     @Override

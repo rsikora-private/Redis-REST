@@ -24,7 +24,7 @@ public interface UserEndpoint {
     void delete(Long id);
 
     @RequestMapping(method = RequestMethod.POST, value = "/{userId}/posts")
-    void addPost(Long userId, PostDto post);
+    Long addPost(Long userId, PostDto post);
 
     @RequestMapping(method = RequestMethod.GET, value = "/{userId}/posts")
     List<PostDto> findAllPosts(Long userId);

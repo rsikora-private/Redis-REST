@@ -13,7 +13,6 @@ import java.util.Optional;
 public interface ObjectRepo<E extends RedisEntity, ID extends Serializable> {
 
     /**
-     *
      * @param entity
      * @return saved entity
      * @throws DataAccessException
@@ -22,6 +21,7 @@ public interface ObjectRepo<E extends RedisEntity, ID extends Serializable> {
 
     /**
      * Retrieve entity by id
+     *
      * @param id
      * @return
      */
@@ -29,6 +29,7 @@ public interface ObjectRepo<E extends RedisEntity, ID extends Serializable> {
 
     /**
      * Returns all entries
+     *
      * @return
      * @throws DataAccessException
      */
@@ -36,6 +37,7 @@ public interface ObjectRepo<E extends RedisEntity, ID extends Serializable> {
 
     /**
      * Delete entity by id
+     *
      * @param id
      * @throws DataAccessException
      */

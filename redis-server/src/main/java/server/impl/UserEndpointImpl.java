@@ -39,8 +39,8 @@ public class UserEndpointImpl implements UserEndpoint {
     }
 
     @Override
-    public void addPost(@PathVariable(value = "userId") final Long userId, @RequestBody final PostDto post) {
-        userController.addPost(userId, post);
+    public Long addPost(@PathVariable(value = "userId") final Long userId, @RequestBody final PostDto post) {
+        return userController.addPost(userId, post).getId();
     }
 
     @Override

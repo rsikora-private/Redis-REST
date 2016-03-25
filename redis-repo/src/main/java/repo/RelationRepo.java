@@ -19,6 +19,7 @@ public interface RelationRepo<IDP extends Serializable, IDCH extends Serializabl
 
     /**
      * Create relation One to many between parent and child entity
+     *
      * @param parentId
      * @param childId
      * @throws DataAccessException
@@ -27,6 +28,7 @@ public interface RelationRepo<IDP extends Serializable, IDCH extends Serializabl
 
     /**
      * Returns all entities for parent
+     *
      * @param parentId
      * @return
      * @throws DataAccessException
@@ -35,6 +37,7 @@ public interface RelationRepo<IDP extends Serializable, IDCH extends Serializabl
 
     /**
      * Returns all entities for parent with paging
+     *
      * @param parentId
      * @param firstElement
      * @param size
@@ -45,6 +48,7 @@ public interface RelationRepo<IDP extends Serializable, IDCH extends Serializabl
 
     /**
      * Return count of entries
+     *
      * @param parentId
      * @return
      * @throws DataAccessException

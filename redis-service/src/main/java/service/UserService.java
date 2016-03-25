@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface UserService extends CommonService<User> {
 
-    void addPost(long userId, Post post);
+    Post addPost(long userId, Post post);
 
     List<Post> findPostForUserId(long userId);
 }

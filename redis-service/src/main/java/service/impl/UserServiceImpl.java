@@ -7,7 +7,6 @@ import org.springframework.dao.DataAccessException;
 import repo.impl.UserPostsRelation;
 import service.PostService;
 import service.UserService;
-import service.exception.NotFoundException;
 import service.exception.RedisServiceException;
 
 import java.util.ArrayList;
@@ -19,21 +18,18 @@ import java.util.List;
 
 class UserServiceImpl extends CommonServiceImpl<User> implements UserService {
 
-    private PostService         postService;
-    private UserPostsRelation   userPostsRelation;
+    private PostService postService;
+    private UserPostsRelation userPostsRelation;
 
     @Override
-    public void addPost(final long userId, final Post post) {
-        final User user = findById(userId);
-        if (user == null) {
-            throw new NotFoundException("Cannot find user for id:" + userId);
-        }
+    public Post addPost(final long userId, final Post post) {
         final Post dbPost = postService.create(post);
         try {
             userPostsRelation.create(userId, dbPost.getId());
         } catch (DataAccessException e) {
             throw new RedisServiceException(e);
         }
+        return dbPost;
     }
 
     @Override
