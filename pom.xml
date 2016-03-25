@@ -3,10 +3,18 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.robertsikora</groupId>
+	<groupId>robertsikora</groupId>
 	<artifactId>restskeleton</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<modules>
+		<module>redis-model</module>
+		<module>redis-repo</module>
+		<module>redis-service</module>
+		<module>redis-dto</module>
+		<module>redis-controller</module>
+		<module>redis-server</module>
+	</modules>
+	<packaging>pom</packaging>
 
 	<name>REST skeleton</name>
 	<description>REST skeleton with DTO</description>
@@ -47,14 +55,5 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>

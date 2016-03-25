@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="basicController" class="controller.impl.BasicControllerImpl" abstract="true" />
+
+    <bean id="userController" class="controller.impl.UserControllerImpl" parent="basicController">
+        <property name="mapper" ref="dto.userMapper" />
+        <property name="commonService" ref="userService"/>
+    </bean>
+
+    <bean id="postController" class="controller.impl.PostControllerImpl" parent="basicController">
+        <property name="mapper" ref="dto.postMapper" />
+        <property name="commonService" ref="postService"/>
+    </bean>
+
+</beans>
