@@ -4,8 +4,10 @@ import model.RedisEntity;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.util.Assert;
 import repo.ObjectRepo;
+import repo.exception.RepoException;
 import service.CommonService;
 import service.exception.NotFoundException;
+import service.exception.RedisServiceException;
 
 import java.util.Map;
 
@@ -20,7 +22,11 @@ abstract class CommonServiceImpl<E extends RedisEntity>
     @Override
     public E create(final E entity) {
         Assert.notNull(entity);
-        return objectRepo.create(entity);
+        try {
+            return objectRepo.create(entity);
+        } catch (final RepoException e) {
+            throw new RedisServiceException(e);
+        }
     }
 
     @Override
@@ -31,12 +37,20 @@ abstract class CommonServiceImpl<E extends RedisEntity>
 
     @Override
     public void delete(final long id) {
-        objectRepo.delete(id);
+        try {
+            objectRepo.delete(id);
+        } catch (RepoException e) {
+            throw new RedisServiceException(e);
+        }
     }
 
     @Override
     public Map<Object, Object> findAll() {
-        return objectRepo.findAll();
+        try {
+            return objectRepo.findAll();
+        } catch (RepoException e) {
+            throw new RedisServiceException(e);
+        }
     }
 
     @Required

@@ -1,5 +1,7 @@
 package repo;
 
+import repo.exception.RepoException;
+
 import java.io.Serializable;
 import java.util.List;
 /**
@@ -15,11 +17,11 @@ import java.util.List;
 
 public interface RelationRepo<IDP extends Serializable, IDCH extends Serializable> {
 
-    void create(IDP parentId, IDCH childId);
+    void create(IDP parentId, IDCH childId) throws RepoException;
 
-    List<IDCH> findAllByParentId(IDP parentId);
+    List<IDCH> findAllByParentId(IDP parentId) throws RepoException;
 
-    List<IDCH> findByParentId(IDP parentId, long firstElement, long size);
+    List<IDCH> findByParentId(IDP parentId, long firstElement, long size) throws RepoException;
 
-    long count(IDP parentId);
+    long count(IDP parentId) throws RepoException;
 }

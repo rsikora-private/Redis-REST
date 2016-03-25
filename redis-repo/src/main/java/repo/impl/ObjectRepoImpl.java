@@ -6,6 +6,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.Assert;
 import repo.ObjectRepo;
+import repo.exception.RepoException;
 import repo.impl.id.IdGenerator;
 
 import java.io.Serializable;
@@ -22,37 +23,49 @@ abstract class ObjectRepoImpl<T extends RedisEntity,
     private RedisTemplate<String, T> redisTemplate;
     private IdGenerator<ID> idGenerator;
 
-    public T create(final T entity) {
+    public T create(final T entity) throws RepoException {
         Assert.notNull(entity);
-        final ID id = idGenerator.generate(key());
-        this.redisTemplate.opsForHash().put(key(), id, entity);
-        entity.setId(id);
+        try {
+            final ID id = idGenerator.generate(key());
+            this.redisTemplate.opsForHash().put(key(), id, entity);
+            entity.setId(id);
+        } catch (DataAccessException dae) {
+            throw new RepoException(dae);
+        }
         return entity;
     }
 
     public Optional<T> getById(final ID id) {
         Assert.notNull(id);
-        T t = null;
+        T t;
         try {
             t = (T) this.redisTemplate.opsForHash().get(key(), id);
             if (t != null) {
                 t.setId(id);
             }
         } catch (DataAccessException dae) {
-            System.out.print("");
+            return Optional.empty();
         }
         return Optional.ofNullable(t);
     }
 
     @Override
-    public Map<Object, Object> findAll() {
-        return this.redisTemplate.opsForHash().entries(key());
+    public Map<Object, Object> findAll() throws RepoException {
+        try {
+            return this.redisTemplate.opsForHash().entries(key());
+        } catch (DataAccessException dae) {
+            throw new RepoException(dae);
+        }
     }
 
     @Override
-    public void delete(final ID id) {
+    public void delete(final ID id) throws RepoException {
         Assert.notNull(id);
-        this.redisTemplate.opsForHash().delete(key(), id);
+        try {
+            this.redisTemplate.opsForHash().delete(key(), id);
+        } catch (DataAccessException dae) {
+            throw new RepoException(dae);
+        }
     }
 
     private String key() {

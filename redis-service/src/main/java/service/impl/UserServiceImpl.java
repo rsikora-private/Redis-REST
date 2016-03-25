@@ -3,10 +3,12 @@ package service.impl;
 import model.Post;
 import model.User;
 import org.springframework.beans.factory.annotation.Required;
+import repo.exception.RepoException;
 import repo.impl.UserPostsRelation;
 import service.PostService;
 import service.UserService;
 import service.exception.NotFoundException;
+import service.exception.RedisServiceException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,12 +29,21 @@ class UserServiceImpl extends CommonServiceImpl<User> implements UserService {
             throw new NotFoundException("Cannot find user for id:" + userId);
         }
         final Post dbPost = postService.create(post);
-        userPostsRelation.create(userId, dbPost.getId());
+        try {
+            userPostsRelation.create(userId, dbPost.getId());
+        } catch (RepoException e) {
+            throw new RedisServiceException(e);
+        }
     }
 
     @Override
     public List<Post> findPostForUserId(long userId) {
-        final List<Long> ids = userPostsRelation.findAllByParentId(userId);
+        final List<Long> ids;
+        try {
+            ids = userPostsRelation.findAllByParentId(userId);
+        } catch (RepoException e) {
+            throw new RedisServiceException(e);
+        }
         final List<Post> result = new ArrayList<>();
         ids.forEach(id -> result.add(postService.findById(id)));
         return result;
