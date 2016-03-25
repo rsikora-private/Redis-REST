@@ -1,7 +1,7 @@
 package repo;
 
 import model.RedisEntity;
-import repo.exception.RepoException;
+import org.springframework.dao.DataAccessException;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -16,9 +16,9 @@ public interface ObjectRepo<E extends RedisEntity, ID extends Serializable> {
      *
      * @param entity
      * @return saved entity
-     * @throws RepoException
+     * @throws DataAccessException
      */
-    E create(E entity) throws RepoException;
+    E create(E entity) throws DataAccessException;
 
     /**
      * Retrieve entity by id
@@ -30,14 +30,14 @@ public interface ObjectRepo<E extends RedisEntity, ID extends Serializable> {
     /**
      * Returns all entries
      * @return
-     * @throws RepoException
+     * @throws DataAccessException
      */
-    Map<Object, Object> findAll() throws RepoException;
+    Map<Object, Object> findAll() throws DataAccessException;
 
     /**
      * Delete entity by id
      * @param id
-     * @throws RepoException
+     * @throws DataAccessException
      */
-    void delete(ID id) throws RepoException;
+    void delete(ID id) throws DataAccessException;
 }

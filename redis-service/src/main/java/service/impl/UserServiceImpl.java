@@ -3,7 +3,7 @@ package service.impl;
 import model.Post;
 import model.User;
 import org.springframework.beans.factory.annotation.Required;
-import repo.exception.RepoException;
+import org.springframework.dao.DataAccessException;
 import repo.impl.UserPostsRelation;
 import service.PostService;
 import service.UserService;
@@ -31,7 +31,7 @@ class UserServiceImpl extends CommonServiceImpl<User> implements UserService {
         final Post dbPost = postService.create(post);
         try {
             userPostsRelation.create(userId, dbPost.getId());
-        } catch (RepoException e) {
+        } catch (DataAccessException e) {
             throw new RedisServiceException(e);
         }
     }
@@ -41,7 +41,7 @@ class UserServiceImpl extends CommonServiceImpl<User> implements UserService {
         final List<Long> ids;
         try {
             ids = userPostsRelation.findAllByParentId(userId);
-        } catch (RepoException e) {
+        } catch (DataAccessException e) {
             throw new RedisServiceException(e);
         }
         final List<Post> result = new ArrayList<>();

@@ -1,6 +1,6 @@
 package repo;
 
-import repo.exception.RepoException;
+import org.springframework.dao.DataAccessException;
 
 import java.io.Serializable;
 import java.util.List;
@@ -21,17 +21,17 @@ public interface RelationRepo<IDP extends Serializable, IDCH extends Serializabl
      * Create relation One to many between parent and child entity
      * @param parentId
      * @param childId
-     * @throws RepoException
+     * @throws DataAccessException
      */
-    void create(IDP parentId, IDCH childId) throws RepoException;
+    void create(IDP parentId, IDCH childId) throws DataAccessException;
 
     /**
      * Returns all entities for parent
      * @param parentId
      * @return
-     * @throws RepoException
+     * @throws DataAccessException
      */
-    List<IDCH> findAllByParentId(IDP parentId) throws RepoException;
+    List<IDCH> findAllByParentId(IDP parentId) throws DataAccessException;
 
     /**
      * Returns all entities for parent with paging
@@ -39,15 +39,15 @@ public interface RelationRepo<IDP extends Serializable, IDCH extends Serializabl
      * @param firstElement
      * @param size
      * @return
-     * @throws RepoException
+     * @throws DataAccessException
      */
-    List<IDCH> findByParentId(IDP parentId, long firstElement, long size) throws RepoException;
+    List<IDCH> findByParentId(IDP parentId, long firstElement, long size) throws DataAccessException;
 
     /**
      * Return count of entries
      * @param parentId
      * @return
-     * @throws RepoException
+     * @throws DataAccessException
      */
-    long count(IDP parentId) throws RepoException;
+    long count(IDP parentId) throws DataAccessException;
 }

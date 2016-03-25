@@ -2,9 +2,9 @@ package service.impl;
 
 import model.RedisEntity;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.dao.DataAccessException;
 import org.springframework.util.Assert;
 import repo.ObjectRepo;
-import repo.exception.RepoException;
 import service.CommonService;
 import service.exception.NotFoundException;
 import service.exception.RedisServiceException;
@@ -24,7 +24,7 @@ abstract class CommonServiceImpl<E extends RedisEntity>
         Assert.notNull(entity);
         try {
             return objectRepo.create(entity);
-        } catch (final RepoException e) {
+        } catch (final DataAccessException e) {
             throw new RedisServiceException(e);
         }
     }
@@ -39,7 +39,7 @@ abstract class CommonServiceImpl<E extends RedisEntity>
     public void delete(final long id) {
         try {
             objectRepo.delete(id);
-        } catch (RepoException e) {
+        } catch (DataAccessException e) {
             throw new RedisServiceException(e);
         }
     }
@@ -48,7 +48,7 @@ abstract class CommonServiceImpl<E extends RedisEntity>
     public Map<Object, Object> findAll() {
         try {
             return objectRepo.findAll();
-        } catch (RepoException e) {
+        } catch (DataAccessException e) {
             throw new RedisServiceException(e);
         }
     }
