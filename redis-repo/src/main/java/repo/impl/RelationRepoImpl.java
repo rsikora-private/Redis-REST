@@ -6,6 +6,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import repo.RelationRepo;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -24,13 +25,14 @@ public class RelationRepoImpl<IDP extends Serializable, IDCH extends Serializabl
 
     @Override
     public List<IDCH> findAllByParentId(final IDP parentId) throws DataAccessException {
-        return redisTemplate.opsForList().range(key(parentId), 0, count(parentId));
+        return Collections.unmodifiableList(redisTemplate.opsForList().range(key(parentId), 0, count(parentId)));
 
     }
 
     @Override
     public List<IDCH> findByParentId(IDP parentId, long firstElement, long size) throws DataAccessException {
-        return redisTemplate.opsForList().range(key(parentId), firstElement, firstElement + size);
+        return Collections.unmodifiableList(redisTemplate.opsForList().range(key(parentId),
+                firstElement, firstElement + size));
 
     }
 
