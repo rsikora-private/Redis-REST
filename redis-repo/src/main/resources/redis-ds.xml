@@ -8,6 +8,8 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!-- May be replaced by RedisAutoConfiguration.class from Spring-Boot -->
+
     <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
           p:hostName="${redis.host}"
           p:port="${redis.port}"
